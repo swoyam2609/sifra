@@ -1,0 +1,137 @@
+.sifragradient {
+    background: linear-gradient(to right, #5FB0FF, #FF567D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+  }
+
+.aibuddygrad{
+    background: linear-gradient(to right, #FFC764, #8BFFEE,#257AE7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.cominggrad{
+    background: linear-gradient(to right, #F3CD71, #A57CE9,#976DFF);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}
+
+.notifybtn{
+    background: linear-gradient(-45deg, #5FAFFF, #D60145,#F2CC74);
+    
+}
+@media (min-width:768px){
+ br.res1{
+  display: none;
+ }
+}
+
+
+@media (max-width: 600px){
+
+    .mob {
+        display: flex;
+        flex-direction: column;
+        position: relative;
+      }
+      br.res{
+        display: none;
+      }
+      .com{
+        display: none;
+      }
+      .input{
+        position: absolute;
+        top: 22%;
+      }
+    .notifybtn{
+      width: 38vw;
+      height: 9vw;
+      margin-top: 10px;
+      
+    }
+    .input input{
+      margin-top: 1vw;
+      width: 70vw;
+    
+    }
+      .heading{
+        margin-top: 5vw;
+      }
+      
+      .heading h1{
+        font-size: 6vw;
+      }
+      .heading1 h1{
+        font-size: 2rem;
+      }
+      .gemini{
+        position: absolute;
+        bottom: 0;
+
+        width: 60vw;
+      }
+      .book {
+        order: 1; /* Ensures the content stays above the logo */
+      }
+      .para{
+        margin-bottom: 22vw;
+      }
+}
+@media (max-width: 422px) {
+  .heading h1{
+    font-size: 5vw;
+  }
+  .para1{
+    padding-right: 10px;
+    
+  }
+  .para{
+    padding-right: 10px;
+    margin-bottom: 30vw;
+    
+  }
+  .input input{
+    margin-top: -9vw;
+    margin-left: 50px;
+    width: 70vw;
+  
+  }
+  .notifybtn{
+    display: flex;
+      align-items: center;
+      justify-content: center;
+  } 
+
+  .heading h2{
+    padding-left: 50px;
+    margin-top: 50px;
+  }
+  .gemini img{
+    width: 60vw;
+  }
+   
+}
+@media (max-width: 350px){
+  .heading h1{
+    font-size: 5vw;
+  }
+  .para1{
+    padding-right: 10px;
+    
+  }
+  
+  .para{
+    padding-right: 10px;
+    margin-bottom: 30vw;
+    
+  }
+  
+  
+} 
