@@ -31,6 +31,12 @@
   display: none;
  }
 }
+@media (min-width:768px){
+  .heading{
+    padding-left: 3rem;
+  }
+}
+
 
 
 @media (max-width: 600px){
@@ -75,18 +81,22 @@
         position: absolute;
         bottom: 0;
 
-        width: 60vw;
+        width: 50vw;
       }
       .book {
         order: 1; /* Ensures the content stays above the logo */
       }
+      .book h2{
+        margin-top: 3.5rem;
+      }
+      
       .para{
         margin-bottom: 22vw;
       }
 }
 @media (max-width: 422px) {
   .heading h1{
-    font-size: 5vw;
+    font-size: 6vw;
   }
   .para1{
     padding-right: 10px;
@@ -96,6 +106,12 @@
     padding-right: 10px;
     margin-bottom: 30vw;
     
+  }
+  .wrap{
+     display: 'flex';
+      flex-direction: 'column';
+       align-items: 'center';
+      width: '100%'
   }
   .input input{
     margin-top: -9vw;
@@ -108,13 +124,12 @@
       align-items: center;
       justify-content: center;
   } 
-
-  .heading h2{
-    padding-left: 50px;
-    margin-top: 50px;
-  }
+  
   .gemini img{
     width: 60vw;
+  }
+  .aibuddygrad{
+
   }
    
 }
