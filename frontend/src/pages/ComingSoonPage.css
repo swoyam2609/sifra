@@ -15,26 +15,26 @@
 }
 
 .cominggrad{
-    background: linear-gradient(to right, #F3CD71, #A57CE9,#976DFF);
+    background: linear-gradient(-45deg, #F3CD71, #A57CE9,#976DFF);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    text-fill-color: transparent;
+    -webkit-text-fill-color: transparent;
 }
 
 .notifybtn{
     background: linear-gradient(-45deg, #5FAFFF, #D60145,#F2CC74);
     
 }
-@media (min-width:768px){
- br.res1{
-  display: none;
- }
-}
+
+
 @media (min-width:768px){
   .heading{
-    padding-left: 4rem;
+    padding-left: 3rem;
   }
+  br.res1{
+    display: none;
+   }
 }
 
 
@@ -133,6 +133,21 @@
   }
    
 }
+
+@media (max-width: 470px){
+   
+  .heading{
+    padding-left: 2vw;
+  }
+  
+
+  .para1{
+    padding-right: 10px;
+    
+  }
+  
+}
+
 @media (max-width: 350px){
   .heading h1{
     font-size: 5vw;

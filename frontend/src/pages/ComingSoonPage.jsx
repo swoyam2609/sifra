@@ -60,13 +60,14 @@ const ComingSoonPage = () => {
      <div className='flex items-end justify-end gemini '>
     <img src={gemini} alt="Gemini" />
      </div>
-      <h1 className="heading text-5xl  text-white leading-normal font-normal "><span className='   text-6xl max-xsm:pl-14 font-bold text-[#AE8DFF] max-xsm:text-4xl'>Hey👋 <br className='res' /></span> am <span className='text-7xl font-bold sifragradient max-xsm:text-4xl big '>Sifra</span>, <br className='res1 ' /><span className='max-xsm:pl-9'>your personal </span> <span className='text-7xl font-bold aibuddygrad max-xsm:text-4xl big '>AI Buddy</span> <br className='res' /> <br className='res1' /><span className='text-4xl  cominggrad  max-xsm:ml-5 max-xsm:text-2xl max-xsm:text-center max-xsm:mx-auto max-xsm:pl-12 '>coming soon<span className='com'>................</span></span></h1>
-      <h2 className=' max-xsm:text-center max-xsm:px-12 max-xsm:pt-28 pl-20  mt-4 text-3xl max-xsm:text-xl text-white heading '>About<span className='text-5xl font-bold  sifragradient max-xsm:text-4xl'> Sifra</span></h2>
-      <p className=' para1 pl-20 pr-10 mt-6 text-2xl text-white max-xsm:pl-10 max-xsm:text-xl heading'>Meet Sifra, your 24/7 personal Artificial Intelligence buddy! 🤖✨ <br />
+      <h1 className="heading text-5xl  text-white leading-normal font-normal "><span className=' text-6xl max-xsm:pl-14 font-bold text-[#AE8DFF] max-xsm:text-4xl'>Hey👋 <br className='res' /></span> am <span className='text-7xl font-bold sifragradient max-xsm:text-4xl big '>Sifra</span>, <br className='res1 ' /><span className='max-xsm:pl-9'>your personal </span> <span className='text-7xl font-bold aibuddygrad max-xsm:text-4xl big '>AI Buddy</span> <br className='res' /> <br className='res1' /></h1>
+      <div className='text-4xl pl-11 cominggrad max-xsm:pl-0 max-xsm:text-2xl sm:text-start max-xsm:text-center '>coming soon<span className='com'>.................</span></div>
+      <h2 className=' heading max-xsm:text-center max-xsm:px-12 max-xsm:pt-28   mt-9 text-3xl max-xsm:text-xl text-white heading '>About<span className='text-5xl font-bold  sifragradient max-xsm:text-4xl'> Sifra</span></h2>
+      <p className=' para1  pr-10 mt-6 text-2xl text-white max-xsm:pl-10 max-xsm:text-xl heading'>Meet Sifra, your 24/7 personal Artificial Intelligence buddy! 🤖✨ <br />
 Whether you need help staying organized,<br />
 quick answers to burning questions, or just a friendly chat,<br />
 Sifra is here to make your day brighter. 🌞💬 </p>
-<p className=' para pl-20 pr-10 mt-6 text-2xl text-white max-xsm:pl-10 max-xsm:text-xl heading' >Powered by Google’s latest Gemini model, <br />
+<p className=' para  pr-10 mt-6 text-2xl text-white max-xsm:pl-10 max-xsm:text-xl heading' >Powered by Google’s latest Gemini model, <br />
 Sifra not only understands your needs with precision but also <br /> remembers your preferences and past conversations, <br />
 ensuring a personalized experience every time. <br />
 Let Sifra simplify your life with its intuitive AI capabilities and <br /> friendly demeanor! 🌟🎉</p>
