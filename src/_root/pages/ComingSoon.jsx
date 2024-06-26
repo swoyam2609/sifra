@@ -60,6 +60,7 @@ const ComingSoon = () => {
         );
 
         handleOpen();
+        setEmail("");
       } catch (error) {
         console.error("Error submitting email:", error);
         setError(
@@ -134,7 +135,7 @@ const ComingSoon = () => {
                   <input
                     type="email"
                     placeholder="Enter your email"
-                    className="bg-transparent outline-none font-primary w-full flex-1 md:min-w-[500px] lg:min-w-[400px]"
+                    className="bg-transparent outline-none font-primary w-full flex-1 md:min-w-[500px] lg:min-w-[400px] pr-4"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                   />
@@ -198,7 +199,7 @@ const ComingSoon = () => {
             <div
               data-aos="fade-up"
               data-aos-easing="ease-in-out"
-              data-aos-delay="500"
+              data-aos-delay="550"
               data-aos-offset="0"
             >
               <Typography
@@ -217,7 +218,7 @@ const ComingSoon = () => {
             <div
               data-aos="fade-up"
               data-aos-easing="ease-in-out"
-              data-aos-delay="500"
+              data-aos-delay="550"
               data-aos-offset="0"
               className="w-full max-w-[140px] sm:max-w-[200px]"
             >
