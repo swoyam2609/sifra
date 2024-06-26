@@ -19,3 +19,46 @@
 body {
   font-family: "GoogleSansRegular";
 }
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgb(255, 86, 125);
+  background: linear-gradient(
+    104deg,
+    rgba(255, 86, 125, 1) 0%,
+    rgba(94, 176, 255, 1) 100%
+  );
+  border-radius: 2rem;
+}
+
+.gr {
+  background: rgb(255, 86, 125);
+  background: linear-gradient(
+    104deg,
+    rgba(255, 86, 125, 1) 0%,
+    rgba(94, 176, 255, 1) 100%
+  );
+  
+}
+
+.graText {
+  font-family: "GoogleSansBold";
+  color: #fff;
+  font-weight: bold;
+  background: -webkit-linear-gradient(
+    -180deg,
+    rgba(255, 86, 125, 1) 20%,
+    rgba(94, 176, 255, 1) 90%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
