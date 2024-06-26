@@ -1,0 +1,21 @@
+@font-face {
+  font-family: "GoogleSansRegular";
+  src: url("/assets/fonts/GoogleSans-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "GoogleSansBold";
+  src: url("/assets/fonts/GoogleSans-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: "GoogleSansRegular";
+}
