@@ -96,8 +96,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🌐 Connect with Us
 
-- **Website**: [sifra.ai](http://sifra.ai)
-- **Support**: [support@sifra.ai](mailto:support@sifra.ai)
+- **Website**: [sifra.swoyam.in](http://sifra.swoyam.in)
+- **Support**: [Swoyam Siddharth Nayak](mailto:me@swoyam.in)
 
 ---
 
