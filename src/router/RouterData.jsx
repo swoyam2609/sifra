@@ -1,6 +1,6 @@
-export const RouterData = [
-  {
+export const RouterData = {
+  home: {
     name: "Home",
     link: "/",
   },
-];
+};

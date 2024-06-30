@@ -4,7 +4,7 @@ import { Suspense } from "react";
 
 const App = () => {
   return (
-    <div id="App">
+    <div id="App" className="bg-black1 text-white">
       <Suspense fallback={<Loading />}>
         <Outlet />
       </Suspense>
