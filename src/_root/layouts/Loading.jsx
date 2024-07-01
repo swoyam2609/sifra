@@ -1,14 +1,14 @@
-import LoadingIcon from "../../data/animation/loader.gif";
 import { Typography } from "@material-tailwind/react";
-
+import Lottie from "lottie-react";
+import loader from "../../data/animation/loader2.json";
 const Loading = () => {
   return (
     <div className="bg-[#07010D] w-full h-dvh overflow-hidden grid place-content-center relative">
       {/* <Lottie animationData={LoadingIcon} loop className="size-[100px]"/> */}
-      <img
-        src={LoadingIcon}
-        alt="loading..."
-        className="size-[80px] object-cover mx-auto"
+      <Lottie
+        animationData={loader}
+        loop={true}
+        className="size-[100px] scale-150"
       />
       <Typography
         variant="h5"
@@ -17,6 +17,7 @@ const Loading = () => {
       >
         Sifra
       </Typography>
+
       <div className="absolute bottom-6 right-6">
         <Typography
           variant="h6"

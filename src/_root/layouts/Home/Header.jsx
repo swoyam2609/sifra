@@ -2,8 +2,12 @@ import { Typography } from "@material-tailwind/react";
 import Wrapper from "../../components/Wrapper";
 import { RiLoginCircleLine } from "react-icons/ri";
 import { PrimaryBtn } from "../../../components/Button";
+import { useNavigate } from "react-router-dom";
+import { RouterData } from "../../../router/RouterData";
 
 const Header = () => {
+  const navigate = useNavigate();
+
   return (
     <header>
       <Wrapper>
@@ -15,7 +19,12 @@ const Header = () => {
             Sifra
           </Typography>
           <div className="flex flex-row items-center gap-4">
-            <PrimaryBtn className={"gap-2"}>
+            <PrimaryBtn
+              className={"gap-2"}
+              onClick={() => {
+                navigate(RouterData.auth.signup);
+              }}
+            >
               <RiLoginCircleLine className="text-lg" />
               <span className="text-sm">Join Now</span>
             </PrimaryBtn>

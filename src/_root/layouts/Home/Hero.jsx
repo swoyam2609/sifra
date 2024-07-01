@@ -4,8 +4,12 @@ import { PrimaryBtn } from "../../../components/Button";
 import { RiMessage3Line } from "react-icons/ri";
 import GeminiLogo from "../../components/GeminiLogo";
 import { FlipWords } from "../../components/FlipWords";
+import { useNavigate } from "react-router-dom";
+import { RouterData } from "../../../router/RouterData";
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   const staggerContainer = {
     hidden: { opacity: 0 },
     show: {
@@ -56,7 +60,7 @@ const Hero = () => {
               <PrimaryBtn
                 className={"max-w-"}
                 onClick={() => {
-                  alert("hey");
+                  navigate(RouterData.auth.signin);
                 }}
               >
                 <RiMessage3Line className="text-lg mr-1" />

@@ -6,7 +6,7 @@ const GeminiLogo = () => {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         // eslint-disable-next-line react/no-unknown-property
-        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xmlnsXlink="http://www.w3.org/1999/xlink"
       >
         <g clipPath="url(#clip0_74_13941)">
           <rect

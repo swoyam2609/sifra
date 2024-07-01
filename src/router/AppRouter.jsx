@@ -2,9 +2,15 @@ import { createBrowserRouter } from "react-router-dom";
 import App from "../App";
 import { lazy } from "react";
 import { RouterData } from "./RouterData";
-
+import Auth from "../_auth/Auth";
+import Error404 from "../_root/pages/Error404";
+import PrivateRouter from "./PrivateRouter";
 const ComingSoon = lazy(() => import("../_root/pages/ComingSoon"));
 const Home = lazy(() => import("../_root/pages/Home"));
+const Dashboard = lazy(() => import("../_root/pages/Dashboard"));
+const Signin = lazy(() => import("../_auth/Layout/Signin"));
+const Signup = lazy(() => import("../_auth/Layout/Signup"));
+const ForgotPassword = lazy(() => import("../_auth/Layout/ForgotPassword"));
 
 const AppRouter = createBrowserRouter([
   {
@@ -19,7 +25,37 @@ const AppRouter = createBrowserRouter([
         path: "/coming-soon",
         element: <ComingSoon />,
       },
+      {
+        path: RouterData.dashboard,
+        element: (
+          <PrivateRouter>
+            <Dashboard />
+          </PrivateRouter>
+        ),
+      },
     ],
+  },
+  {
+    path: "/auth",
+    element: <Auth />,
+    children: [
+      {
+        path: RouterData.auth.signin,
+        element: <Signin />,
+      },
+      {
+        path: RouterData.auth.signup,
+        element: <Signup />,
+      },
+      {
+        path: RouterData.auth.forgotPassword,
+        element: <ForgotPassword />,
+      },
+    ],
+  },
+  {
+    path: "*",
+    element: <Error404 />,
   },
 ]);
 
