@@ -153,11 +153,11 @@ const Signup = () => {
       );
 
       if (res.data.message === "User created successfully") {
-        toast.success("User created successfully, Now Login your Account", {
-          duration: 4000,
-          position: "top-center",
-          className: "font-primary text-sm",
-        });
+        // toast.success("User created successfully, Now Login your Account", {
+        //   duration: 4000,
+        //   position: "top-center",
+        //   className: "font-primary text-sm",
+        // });
         setLoading(false);
         setOpen(true);
         setOtpModal(false);
@@ -220,6 +220,7 @@ const Signup = () => {
               onChange={setOtp}
               numInputs={6}
               renderSeparator={""}
+              inputType="number"
               containerStyle={
                 "flex flex-row  gap-4 justify-center rounded-md flex-wrap"
               }
@@ -254,13 +255,13 @@ const Signup = () => {
         </div>
       ) : (
         <div className="w-full h-full min-h-[calc(100dvh_-_120px)] mt-4 max-w-[450px] mx-auto  flex flex-col justify-center gap-8">
-          <div className="flex flex-col items-center justify-center mt-12">
+          <div className="flex flex-col items-center justify-center mt-0 sm:mt-12">
             <Typography variant="h2" className="font-primary">
               Join Sifra Today!
             </Typography>
             <Typography
               variant="paragraph"
-              className="font-primary text-white/60"
+              className="font-primary text-white/60 text-center"
             >
               Create an account to chat with Sifra.
             </Typography>
@@ -342,7 +343,7 @@ const Signup = () => {
               )}
             </div>
             <div className="flex flex-col gap-4">
-              <Label htmlFor="username" className="text-white/80">
+              <Label htmlFor="password" className="text-white/80">
                 Password
               </Label>
               <div className="flex flex-row items-center gap-2 w-full">
@@ -350,7 +351,7 @@ const Signup = () => {
                   <RiLockPasswordLine />
                 </div>
                 <Input
-                  id="username"
+                  id="password"
                   placeholder=""
                   name="password"
                   type="Password"

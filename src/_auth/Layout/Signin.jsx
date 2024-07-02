@@ -39,10 +39,19 @@ const Signin = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
+
     setErrors({
       ...errors,
       apimsg: "",
     });
+
+    if (data.username === "" || data.password === "") {
+      setLoading(false);
+      return setErrors({
+        ...errors,
+        apimsg: "Please fill all fields",
+      });
+    }
 
     try {
       const response = await axios.get(`${API_URL}/users/login`, {
@@ -115,7 +124,7 @@ const Signin = () => {
             />
           </div>
         </div>
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-4 w-full">
           <Label htmlFor="username" className="text-white/80">
             Password
           </Label>
