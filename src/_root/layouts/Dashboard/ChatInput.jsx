@@ -10,6 +10,7 @@ import { useSelector } from "react-redux";
 import Gravatar from "react-gravatar";
 import Lottie from "lottie-react";
 import loader from "../../../data/animation/loader2.json";
+import { Chip } from "@material-tailwind/react";
 
 const ChatInput = () => {
   const [message, setMessage] = useState("");
@@ -71,10 +72,16 @@ const ChatInput = () => {
 
   return (
     <Wrapper>
-      <div className="chat-container   h-[calc(100dvh_-_80px)] flex gap-4  flex-col  bg-black2">
+      <div className="chat-container   h-[calc(100dvh_-_80px)] flex gap-4  flex-col  bg-black2 relative">
+        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+          <Chip
+            value="BETA VERSION"
+            className="rounded-full font-primary bg-white text-black1"
+          />
+        </div>
         <div className="chat-history flex-1 overflow-hidden overflow-y-auto p-2 rounded-lg shadow-sm relative border border-white/10">
           {chatHistory.length === 0 ? (
-            <div className="flex items-center justify-center h-full text-white/60">
+            <div className="flex items-center justify-center h-full text-white/60 text-center">
               No messages yet. Start the conversation!
             </div>
           ) : (

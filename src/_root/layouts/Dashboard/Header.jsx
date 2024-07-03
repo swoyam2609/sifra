@@ -41,7 +41,7 @@ const Header = () => {
             >
               Sifra
             </Typography>
-            <div className="w-[100px] ml-2 hidden sm:flex">
+            <div className="w-[80px] sm:w-[100px] ml-2 flex ">
               <GeminiLogo />
             </div>
           </div>
