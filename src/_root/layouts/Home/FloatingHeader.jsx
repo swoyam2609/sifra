@@ -9,9 +9,11 @@ import {
 } from "framer-motion";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { Typography } from "@material-tailwind/react";
+import { Chip, Typography } from "@material-tailwind/react";
 import { PrimaryBtn } from "../../../components/Button";
 import { RiLoginCircleLine } from "react-icons/ri";
+import { useNavigate } from "react-router-dom";
+import { RouterData } from "../../../router/RouterData";
 
 export function cn(...inputs) {
   return twMerge(clsx(...inputs));
@@ -19,7 +21,7 @@ export function cn(...inputs) {
 
 export const FloatingNav = ({ className }) => {
   const { scrollYProgress } = useScroll();
-
+  const navigate = useNavigate();
   const [visible, setVisible] = useState(false);
 
   useMotionValueEvent(scrollYProgress, "change", (current) => {
@@ -59,14 +61,25 @@ export const FloatingNav = ({ className }) => {
         )}
       >
         <div className="max-w-screen-2xl w-full mx-auto py-2 px-6 md:px-8 flex items-center justify-between gap-2">
-          <Typography
-            variant="h3"
-            className="font-primary text-white font-normal"
-          >
-            Sifra
-          </Typography>
+          <div className="flex items-center gap-2">
+            <Typography
+              variant="h3"
+              className="font-primary text-white font-normal"
+            >
+              Sifra
+            </Typography>
+            <Chip
+              value="BETA VERSION"
+              className="rounded-full font-primary bg-white text-black1 hidden sm:flex"
+            />
+          </div>
           <div className="flex flex-row items-center gap-4">
-            <PrimaryBtn className={"gap-2"}>
+            <PrimaryBtn
+              className={"gap-2"}
+              onClick={() => {
+                navigate(RouterData.auth.signup);
+              }}
+            >
               <RiLoginCircleLine className="text-lg" />
               <span className="text-sm">Join Now</span>
             </PrimaryBtn>

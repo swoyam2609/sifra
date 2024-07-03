@@ -1,4 +1,4 @@
-import { Button, Typography, Dialog } from "@material-tailwind/react";
+import { Button, Typography, Dialog, Chip } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
@@ -256,7 +256,11 @@ const Signup = () => {
       ) : (
         <div className="w-full h-full min-h-[calc(100dvh_-_120px)] mt-4 max-w-[450px] mx-auto  flex flex-col justify-center gap-8">
           <div className="flex flex-col items-center justify-center mt-0 sm:mt-12">
-            <Typography variant="h2" className="font-primary">
+            <Chip
+              value="BETA VERSION"
+              className="rounded-full font-primary bg-white text-black1 max-w-max mb-2 sm:hidden"
+            />
+            <Typography variant="h2" className="font-primary text-center">
               Join Sifra Today!
             </Typography>
             <Typography

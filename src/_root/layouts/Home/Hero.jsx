@@ -1,4 +1,4 @@
-import { Typography } from "@material-tailwind/react";
+import { Chip, Typography } from "@material-tailwind/react";
 import { motion } from "framer-motion";
 import { PrimaryBtn } from "../../../components/Button";
 import { RiMessage3Line } from "react-icons/ri";
@@ -41,6 +41,10 @@ const Hero = () => {
             variants={fadeInUp}
             className="text w-full flex gap-4 flex-col  mt-24 sm:mt-16"
           >
+            <Chip
+              value="BETA VERSION"
+              className="rounded-full font-primary bg-white text-black1 max-w-max sm:hidden"
+            />
             <Typography
               variant="h1"
               className="font-primary text-5xl sm:text-7xl font-normal text-white leading-[1.2] sm:leading-[1.25]"
