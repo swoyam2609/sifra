@@ -97,10 +97,10 @@ const Signup = () => {
 
     try {
       const res = await axios.post(`${API_URL}/users/signup`, {
-        name: data.name,
-        username: data.username,
-        email: data.email,
-        password: data.password,
+        name: data.name.trim(),
+        username: data.username.trim(),
+        email: data.email.trim(),
+        password: data.password.trim(),
       });
 
       //   console.log("User :", res.data);
@@ -122,7 +122,9 @@ const Signup = () => {
       console.log("Error submitting form:", error);
       setErrors({
         ...errors,
-        msg: "An error occurred while submitting the form.",
+        msg:
+          error.response.data.message ||
+          "An error occurred while submitting the form.",
       });
     } finally {
       setLoading(false);

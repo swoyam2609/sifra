@@ -17,8 +17,8 @@ const Signin = () => {
   }, []);
 
   const [data, setDate] = useState({
-    username: "",
-    password: "",
+    username: "aclogger850",
+    password: "aclogger850@gmail.com",
   });
 
   const navigate = useNavigate();
@@ -56,8 +56,8 @@ const Signin = () => {
     try {
       const response = await axios.get(`${API_URL}/users/login`, {
         params: {
-          username: data.username,
-          password: data.password,
+          username: data.username.trim(),
+          password: data.password.trim(),
         },
       });
 
@@ -129,7 +129,7 @@ const Signin = () => {
           </div>
         </div>
         <div className="flex flex-col gap-4 w-full">
-          <Label htmlFor="username" className="text-white/80">
+          <Label htmlFor="password" className="text-white/80">
             Password
           </Label>
           <div className="flex flex-row items-center gap-2 w-full">
@@ -137,7 +137,7 @@ const Signin = () => {
               <RiLockPasswordLine />
             </div>
             <Input
-              id="username"
+              id="password"
               placeholder=""
               name="password"
               type="Password"

@@ -82,7 +82,7 @@ const Hero = () => {
             className="images w-full relative"
           >
             <img
-              src="./assets/mainImage.png"
+              src="./assets/mainImage.webp"
               alt="Sifra AI Buddy"
               className="w-full h-full object-contain relative lg:scale-125"
             />

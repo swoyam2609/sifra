@@ -10,6 +10,7 @@ import AppRouter from "./router/AppRouter.jsx";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { Toaster } from "react-hot-toast";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 AOS.init();
 
@@ -23,3 +24,5 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     </ThemeProvider>
   </React.StrictMode>
 );
+
+serviceWorkerRegistration.register();

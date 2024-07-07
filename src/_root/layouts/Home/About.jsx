@@ -39,7 +39,7 @@ const About = () => {
         <div className="flex flex-col-reverse lg:flex-row gap-8 mt-8">
           <div className="w-full h-full">
             <img
-              src="./assets/mainImage2.png"
+              src="./assets/mainImage2.webp"
               alt="Sifra AI Buddy"
               className="w-full h-full"
             />

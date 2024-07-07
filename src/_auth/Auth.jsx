@@ -63,7 +63,7 @@ const Auth = () => {
         </div>
         <div className="hidden lg:flex h-[calc(100dvh_-_32px)] relative overflow-hidden rounded-md">
           <img
-            src="/assets/mainImage.png"
+            src="/assets/mainImage.webp"
             alt=""
             className="w-full h-full object-contain relative z-10"
           />

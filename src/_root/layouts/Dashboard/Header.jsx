@@ -58,11 +58,13 @@ const Header = () => {
                   {userData?.email}
                 </Typography>
               </div>
-              <Gravatar
-                email={userData?.email}
-                size={50}
-                className="rounded-full border-4 border-white"
-              />
+              {userData?.email && (
+                <Gravatar
+                  email={userData?.email}
+                  size={50}
+                  className="rounded-full border-4 border-white"
+                />
+              )}
             </div>
             <Tooltip content="logout" className="font-primary">
               <Button
