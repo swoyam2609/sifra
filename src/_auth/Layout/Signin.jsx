@@ -17,8 +17,8 @@ const Signin = () => {
   }, []);
 
   const [data, setDate] = useState({
-    username: "aclogger850",
-    password: "aclogger850@gmail.com",
+    username: "",
+    password: "",
   });
 
   const navigate = useNavigate();
