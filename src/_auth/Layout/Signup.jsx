@@ -1,4 +1,4 @@
-import { Button, Typography, Dialog, Chip } from "@material-tailwind/react";
+import { Button, Typography, Dialog } from "@material-tailwind/react";
 import { useEffect, useState } from "react";
 import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
@@ -29,6 +29,7 @@ const Signup = () => {
     email: "",
     msg: "",
     apimsg: "",
+    password: "",
   });
 
   const [data, setData] = useState({
@@ -50,17 +51,22 @@ const Signup = () => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   };
 
+  const validatePassword = (password) => password.length >= 8;
+
   const validateForm = () => {
     const { username, password, name, email } = data;
     const emailIsValid = validateEmail(email);
+    const passwordIsValid = validatePassword(password);
 
     // Set errors for all fields
     setErrors({
       email: emailIsValid ? "" : "Please enter a valid email address",
+      password: passwordIsValid
+        ? ""
+        : "Password must be at least 8 characters long",
     });
 
-    // Return true if all fields are valid
-    return emailIsValid && username && password && name;
+    return emailIsValid && passwordIsValid && username && name;
   };
 
   const handleChange = (e) => {
@@ -76,6 +82,13 @@ const Signup = () => {
         ...errors,
         email: isValid ? "" : "Please enter a valid email address",
       });
+    } else if (name === "password") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: validatePassword(value)
+          ? ""
+          : "Password must be at least 8 characters long",
+      }));
     }
   };
 
@@ -258,10 +271,6 @@ const Signup = () => {
       ) : (
         <div className="w-full h-full min-h-[calc(100dvh_-_120px)] mt-4 max-w-[450px] mx-auto  flex flex-col justify-center gap-8">
           <div className="flex flex-col items-center justify-center mt-0 sm:mt-12">
-            <Chip
-              value="BETA VERSION"
-              className="rounded-full font-primary bg-white text-black1 max-w-max mb-2 sm:hidden"
-            />
             <Typography variant="h2" className="font-primary text-center">
               Join Sifra Today!
             </Typography>
@@ -366,6 +375,14 @@ const Signup = () => {
                   aria-label="Password"
                 />
               </div>
+              {errors.password && (
+                <Typography
+                  variant="paragraph"
+                  className="text-red-300 text-sm font-primary"
+                >
+                  Error: {errors.password}
+                </Typography>
+              )}
             </div>
             <div className="button-container w-full mt-4">
               <Button

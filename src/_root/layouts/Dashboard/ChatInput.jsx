@@ -10,7 +10,6 @@ import { useSelector } from "react-redux";
 import Gravatar from "react-gravatar";
 import Lottie from "lottie-react";
 import loader from "../../../data/animation/loader2.json";
-import { Chip } from "@material-tailwind/react";
 import messageSound from "../../../data/animation/sound.wav";
 
 const ChatInput = () => {
@@ -91,6 +90,9 @@ const ChatInput = () => {
       );
 
       const data = res.data;
+
+      console.log(data);
+
       const objectStrings = data.match(/\{[^}]+\}/g) || [];
       const result = objectStrings.map(parseObject).filter(Boolean);
 
@@ -98,6 +100,8 @@ const ChatInput = () => {
       const sortedChats = result.sort(
         (a, b) => new Date(a.time) - new Date(b.time)
       );
+
+      console.log(sortedChats);
 
       setChatHistory(
         sortedChats.map((chat) => ({
@@ -203,12 +207,6 @@ const ChatInput = () => {
   return (
     <Wrapper>
       <div className="chat-container h-[calc(100dvh_-_80px)] flex gap-4 flex-col bg-black2 relative">
-        <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-          <Chip
-            value="BETA VERSION"
-            className="rounded-full font-primary bg-white text-black1"
-          />
-        </div>
         <div className="chat-history flex-1 overflow-hidden overflow-y-auto p-2 rounded-lg shadow-sm relative border border-white/10">
           {isLoading ? (
             <div className="flex items-center justify-center h-full">
@@ -298,9 +296,8 @@ const ChatInput = () => {
               </React.Fragment>
             ))
           )}
-          <div className="size-[80px] bg-primary blur-[80px] absolute -top-4 -left-2 -z-1"></div>
-          <div className="size-[80px] bg-secondary blur-[80px] absolute -bottom-4 -right-2 -z-1"></div>
-
+          <div className="size-[80px] bg-primary blur-[80px] fixed -top-4 -left-2 -z-1"></div>
+          <div className="size-[80px] bg-secondary blur-[80px] fixed -bottom-4 -right-2 -z-1"></div>
           {isAiTyping && (
             <div className="chat-message ai-message flex items-center gap-2 mb-2">
               <Lottie

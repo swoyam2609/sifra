@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Label } from "../../components/Label";
 import { Input } from "../../components/Input";
 import { RiLockPasswordLine, RiUser3Line } from "react-icons/ri";
-import { Button, Chip, Typography } from "@material-tailwind/react";
+import { Button, Typography } from "@material-tailwind/react";
 import { RouterData } from "../../router/RouterData";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -97,10 +97,6 @@ const Signin = () => {
   return (
     <div className="w-full h-[calc(100dvh_-_120px)] mt-4 max-w-[450px] mx-auto  flex flex-col justify-center gap-8">
       <div className="flex flex-col items-center justify-center">
-        <Chip
-          value="BETA VERSION"
-          className="rounded-full font-primary bg-white text-black1 max-w-max mb-2 sm:hidden"
-        />
         <Typography variant="h2" className="font-primary">
           Welcome Back !
         </Typography>

@@ -5,12 +5,17 @@ import { RouterData } from "./RouterData";
 import Auth from "../_auth/Auth";
 import Error404 from "../_root/pages/Error404";
 import PrivateRouter from "./PrivateRouter";
+
 const ComingSoon = lazy(() => import("../_root/pages/ComingSoon"));
 const Home = lazy(() => import("../_root/pages/Home"));
 const Dashboard = lazy(() => import("../_root/pages/Dashboard"));
 const Signin = lazy(() => import("../_auth/Layout/Signin"));
 const Signup = lazy(() => import("../_auth/Layout/Signup"));
 const ForgotPassword = lazy(() => import("../_auth/Layout/ForgotPassword"));
+const PrivacyPolicy = lazy(() => import("../_root/pages/PrivacyPolicy"));
+const TermsAndCondition = lazy(() =>
+  import("../_root/pages/TermsAndCondition")
+);
 
 const AppRouter = createBrowserRouter([
   {
@@ -32,6 +37,14 @@ const AppRouter = createBrowserRouter([
             <Dashboard />
           </PrivateRouter>
         ),
+      },
+      {
+        path: RouterData.termsAndCondition,
+        element: <TermsAndCondition />,
+      },
+      {
+        path: RouterData.privacyPolicy,
+        element: <PrivacyPolicy />,
       },
     ],
   },

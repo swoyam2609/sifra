@@ -9,4 +9,6 @@ export const RouterData = {
     signup: "/auth/join",
     forgotPassword: "/auth/forgotPassword",
   },
+  termsAndCondition: "/terms-and-condition",
+  privacyPolicy: "/privacy-policy",
 };

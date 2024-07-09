@@ -1,7 +1,7 @@
 import { Suspense, useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { RouterData } from "../router/RouterData";
-import { Chip, Typography } from "@material-tailwind/react";
+import { Typography } from "@material-tailwind/react";
 import GeminiLogo from "../_root/components/GeminiLogo";
 import Lottie from "lottie-react";
 import loader from "../data/animation/loader2.json";
@@ -42,10 +42,6 @@ const Auth = () => {
               >
                 Sifra
               </Typography>
-              <Chip
-                value="BETA VERSION"
-                className="rounded-full font-primary bg-white text-black1 max-w-max ml-2 hidden sm:flex"
-              />
             </div>
             <div className="w-full max-w-[140px] sm:max-w-[150px]">
               <GeminiLogo />
