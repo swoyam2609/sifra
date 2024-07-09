@@ -19,6 +19,13 @@ const ChatInput = () => {
   const chatEndRef = useRef(null);
   const token = Cookies.get("token");
   const notificationSound = new Audio(messageSound);
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  });
 
   const [isAiTyping, setIsAiTyping] = useState(false);
 
@@ -91,7 +98,7 @@ const ChatInput = () => {
 
       const data = res.data;
 
-      console.log(data);
+      // console.log(data);
 
       const objectStrings = data.match(/\{[^}]+\}/g) || [];
       const result = objectStrings.map(parseObject).filter(Boolean);
@@ -101,7 +108,7 @@ const ChatInput = () => {
         (a, b) => new Date(a.time) - new Date(b.time)
       );
 
-      console.log(sortedChats);
+      // console.log(sortedChats);
 
       setChatHistory(
         sortedChats.map((chat) => ({
@@ -323,6 +330,7 @@ const ChatInput = () => {
             value={message}
             onKeyPress={handleKeyPress}
             disabled={isAiTyping}
+            ref={inputRef}
           />
           <PrimaryBtn
             className="h-10 flex items-center justify-center"
