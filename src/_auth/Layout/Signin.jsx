@@ -109,7 +109,7 @@ const Signin = () => {
       <form className="flex flex-col gap-4 px-4" onSubmit={handleSubmit}>
         <div className="flex flex-col gap-4">
           <Label htmlFor="username" className="text-white/80">
-            User Name
+            Username or Email
           </Label>
           <div className="flex flex-row items-center gap-2 w-full">
             <div className="w-[40px] h-10 rounded grid place-content-center bg-primary/10">
@@ -122,7 +122,7 @@ const Signin = () => {
               type="text"
               onChange={handleChange}
               value={data.username}
-              aria-label="User Name"
+              aria-label="User Name and Email Address"
             />
           </div>
         </div>

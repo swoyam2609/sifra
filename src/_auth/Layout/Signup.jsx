@@ -30,6 +30,7 @@ const Signup = () => {
     msg: "",
     apimsg: "",
     password: "",
+    username: "", // Add this line
   });
 
   const [data, setData] = useState({
@@ -46,6 +47,11 @@ const Signup = () => {
 
   const handleOpen = () => setOpen(!open);
 
+  const validateUsername = (username) => {
+    const regex = /^(?!.*\.\.)(?!.*\.$)[^\W][\w.]{0,29}$/;
+    return regex.test(username);
+  };
+
   const validateEmail = (email) => {
     // Basic email validation regex
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -57,6 +63,7 @@ const Signup = () => {
     const { username, password, name, email } = data;
     const emailIsValid = validateEmail(email);
     const passwordIsValid = validatePassword(password);
+    const usernameIsValid = validateUsername(username);
 
     // Set errors for all fields
     setErrors({
@@ -64,9 +71,12 @@ const Signup = () => {
       password: passwordIsValid
         ? ""
         : "Password must be at least 8 characters long",
+      username: usernameIsValid
+        ? ""
+        : "Username must be 1-30 characters long and can only contain letters, numbers, periods, and underscores. It cannot start or end with a period or have two consecutive periods.",
     });
 
-    return emailIsValid && passwordIsValid && username && name;
+    return emailIsValid && passwordIsValid && usernameIsValid && name;
   };
 
   const handleChange = (e) => {
@@ -88,6 +98,13 @@ const Signup = () => {
         password: validatePassword(value)
           ? ""
           : "Password must be at least 8 characters long",
+      }));
+    } else if (name === "username") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        username: validateUsername(value)
+          ? ""
+          : "Username must be 1-30 characters long and can only contain letters, numbers, periods, and underscores. It cannot start or end with a period or have two consecutive periods.",
       }));
     }
   };
@@ -329,6 +346,14 @@ const Signup = () => {
                   aria-label="User Name"
                 />
               </div>
+              {errors.username && (
+                <Typography
+                  variant="paragraph"
+                  className="text-red-300 text-sm font-primary"
+                >
+                  Error: {errors.username}
+                </Typography>
+              )}
             </div>
             <div className="flex flex-col gap-4">
               <Label htmlFor="email" className="text-white/80">
