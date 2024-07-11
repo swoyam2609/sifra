@@ -11,6 +11,7 @@ import Gravatar from "react-gravatar";
 import Lottie from "lottie-react";
 import loader from "../../../data/animation/loader2.json";
 import messageSound from "../../../data/animation/sound.wav";
+import { parseISO, format } from "date-fns";
 
 const ChatInput = () => {
   const [message, setMessage] = useState("");
@@ -25,7 +26,7 @@ const ChatInput = () => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
-  });
+  }, []);
 
   const [isAiTyping, setIsAiTyping] = useState(false);
 
@@ -36,45 +37,63 @@ const ChatInput = () => {
   };
 
   function parseObject(str) {
-    const userTypeMatch = str.match(/'userType':\s*(\d+)/);
-    const timeMatch = str.match(/'time':\s*datetime\.datetime\(([^)]+)\)/);
-    const messageMatch = str.match(/'message':\s*(.+)(?=\})/s);
+    // Match objects with potentially nested curly braces
+    const objects = str.match(/\{(?:[^{}]|\{(?:[^{}]|\{[^{}]*\})*\})*\}/g);
+    // console.log("Matched objects:", objects); // Log matched objects
+    if (!objects) return [];
 
-    if (userTypeMatch && timeMatch && messageMatch) {
-      const [year, month, day, hour, minute, second, microsecond] = timeMatch[1]
-        .split(",")
-        .map((num) => parseInt(num.trim()));
-      const date = new Date(
-        year,
-        month - 1,
-        day,
-        hour,
-        minute,
-        second,
-        microsecond / 1000
-      );
+    return objects
+      .map((obj) => {
+        const userTypeMatch = obj.match(/'userType':\s*(\d+)/);
+        const dateMatch = obj.match(/'date':\s*'([^']+)'/);
+        const timeMatch = obj.match(
+          /'time':\s*{\s*'date':\s*'([^']+)',\s*'time':\s*'([^']+)'\s*}/
+        );
+        const messageMatch = obj.match(
+          /'message':\s*'([^']*)'|'message':\s*"([^"]*)"/
+        );
 
-      return {
-        userType: parseInt(userTypeMatch[1]),
-        time: date.toISOString(),
-        message: messageMatch[1]
-          .trim()
-          .replace(/^['"]|['"]$/g, "")
-          .replace(/\\n/g, "\n"),
-      };
-    }
-    return null;
+        if (userTypeMatch && dateMatch && timeMatch && messageMatch) {
+          return {
+            userType: parseInt(userTypeMatch[1]),
+            time: {
+              date: dateMatch[1],
+              time: timeMatch[2],
+            },
+            message: (messageMatch[1] || messageMatch[2]).replace(/\\n/g, "\n"),
+          };
+        }
+        return null;
+      })
+      .filter((item) => item !== null);
   }
 
   const groupMessagesByDate = (messages) => {
     const groups = {};
+
     messages.forEach((message) => {
-      const date = new Date(message.time).toLocaleDateString();
-      if (!groups[date]) {
-        groups[date] = [];
+      // Split the date string into day, month, year and construct a new ISO-compatible date string
+      const [day, month, year] = message.time.date.split("-");
+      const isoDateString = `${year}-${month}-${day}`;
+
+      // Parse the ISO-compatible date string into a Date object
+      const messageDate = parseISO(isoDateString);
+
+      if (isNaN(messageDate.getTime())) {
+        console.error(`Invalid date format for message: ${message.time.date}`);
+        return; // Skip invalid dates
       }
-      groups[date].push(message);
+
+      // Format the date into the desired format
+      const formattedDate = format(messageDate, "MMMM d, yyyy");
+
+      const key = formattedDate;
+      if (!groups[key]) {
+        groups[key] = [];
+      }
+      groups[key].push(message);
     });
+
     return Object.entries(groups);
   };
 
@@ -97,28 +116,13 @@ const ChatInput = () => {
       );
 
       const data = res.data;
+      // console.log("Raw data:", data); // Log the raw data
 
-      // console.log(data);
+      const result = parseObject(data);
+      // console.log("Parsed result:", result); // Log the parsed result
 
-      const objectStrings = data.match(/\{[^}]+\}/g) || [];
-      const result = objectStrings.map(parseObject).filter(Boolean);
+      setChatHistory(result.reverse());
 
-      // Sort messages by date
-      const sortedChats = result.sort(
-        (a, b) => new Date(a.time) - new Date(b.time)
-      );
-
-      // console.log(sortedChats);
-
-      setChatHistory(
-        sortedChats.map((chat) => ({
-          sender: chat.userType === 0 ? "user" : "ai",
-          message: chat.message,
-          time: chat.time,
-        }))
-      );
-
-      // Call scrollToBottom after setting chat history
       setTimeout(scrollToBottom, 0);
     } catch (error) {
       console.log(error);
@@ -141,10 +145,24 @@ const ChatInput = () => {
     e.preventDefault();
     if (!message || isAiTyping) return;
 
+    const now = new Date();
+    const messageTime = `${now.getHours().toString().padStart(2, "0")}:${now
+      .getMinutes()
+      .toString()
+      .padStart(2, "0")}`;
+    const messageDate = `${now.getDate().toString().padStart(2, "0")}-${(
+      now.getMonth() + 1
+    )
+      .toString()
+      .padStart(2, "0")}-${now.getFullYear()}`;
+
     const newUserMessage = {
-      sender: "user",
+      userType: 0,
       message: message,
-      time: new Date().toISOString(),
+      time: {
+        date: messageDate,
+        time: messageTime,
+      },
     };
 
     setChatHistory((prev) => [...prev, newUserMessage]);
@@ -165,9 +183,12 @@ const ChatInput = () => {
       );
 
       const newAiMessage = {
-        sender: "ai",
+        userType: 1,
         message: res.data.response,
-        time: new Date().toISOString(),
+        time: {
+          date: messageDate,
+          time: messageTime,
+        },
       };
 
       setChatHistory((prev) => [...prev, newAiMessage]);
@@ -192,10 +213,6 @@ const ChatInput = () => {
       handleSendMessage(e);
     }
   };
-
-  if (chatEndRef.current) {
-    chatEndRef.current.scrollIntoView({ behavior: "smooth" });
-  }
 
   useEffect(() => {
     const scrollToBottom = () => {
@@ -236,18 +253,18 @@ const ChatInput = () => {
                 {messages.map((chat, index) => (
                   <div
                     key={index}
-                    className={`flex  ${
-                      chat.sender === "user"
+                    className={`flex ${
+                      chat.userType === 0
                         ? "user-message justify-end pl-4"
                         : "ai-message justify-start my-4 mt-8 pr-4"
                     } `}
                   >
                     <div
                       className={`flex items-center gap-1 ${
-                        chat.sender === "user" ? "flex-row-reverse" : "order-1"
+                        chat.userType === 0 ? "flex-row-reverse" : "order-1"
                       }`}
                     >
-                      {chat.sender === "user" ? (
+                      {chat.userType === 0 ? (
                         <div className="size-[50px] grid place-content-center">
                           {userData?.email && (
                             <Gravatar
@@ -268,22 +285,23 @@ const ChatInput = () => {
                       )}
                       <div
                         className={`flex flex-col gap-[0.25rem] ${
-                          chat.sender === "user" ? "mt-10" : ""
+                          chat.userType === 0 ? "mt-10" : ""
                         }`}
                       >
                         <span
                           className={`text-xs font-primary text-white/60 ${
-                            chat.sender === "user"
+                            chat.userType === 0
                               ? "text-right items-end"
                               : "text-left items-start"
                           }`}
                         >
-                          {chat.sender === "user" ? "You" : "Sifra"}
+                          {chat.userType === 0 ? "You" : "Sifra"} -{" "}
+                          {chat.time.time.slice(0, 5)}
                         </span>
                         <div
-                          className={`rounded-2xl ${
-                            chat.sender === "user"
-                              ? "bg-white/10 px-3 py-2 !rounded-se-none text-right"
+                          className={`rounded-2xl w-full max-w-max ${
+                            chat.userType === 0
+                              ? "bg-white/10 px-3 py-2 !rounded-se-none text-right ml-auto"
                               : "text-left pr-6"
                           }`}
                         >
