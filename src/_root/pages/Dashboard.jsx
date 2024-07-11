@@ -6,11 +6,15 @@ import { useDispatch } from "react-redux";
 import { setUserData } from "../../store/slices/mainSlices";
 import Header from "../layouts/Dashboard/Header";
 import ChatInput from "../layouts/Dashboard/ChatInput";
+import { useNavigate } from "react-router-dom";
+import { RouterData } from "../../router/RouterData";
 
 const Dashboard = () => {
   useEffect(() => {
     document.title = "Dashboard | Sifra";
   }, []);
+
+  const navigation = useNavigate();
 
   const token = Cookies.get("token");
   const dispatch = useDispatch();
@@ -22,12 +26,25 @@ const Dashboard = () => {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
         },
+        withCredentials: true,
       });
 
       // console.log(res.data);
-      dispatch(setUserData(res.data));
+
+      if (!res.data) {
+        navigation(RouterData.login);
+        return;
+      }
+
+      if (!res.data.verify) {
+        navigation(RouterData.acceptTerms);
+      } else {
+        dispatch(setUserData(res.data));
+      }
     } catch (error) {
-      console.error(error);
+      console.log(error);
+      Cookies.remove("token");
+      navigation(RouterData.login);
     }
   };
 

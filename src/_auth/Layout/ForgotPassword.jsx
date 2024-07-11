@@ -126,7 +126,7 @@ const ForgotPassword = () => {
         msg: "Please enter a valid OTP",
       });
     }
-    console.log(data);
+    // console.log(data);
 
     if (data.newPassword.length === 0) {
       setLoading(false);

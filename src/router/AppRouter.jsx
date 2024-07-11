@@ -16,6 +16,9 @@ const PrivacyPolicy = lazy(() => import("../_root/pages/PrivacyPolicy"));
 const TermsAndCondition = lazy(() =>
   import("../_root/pages/TermsAndCondition")
 );
+const AcceptTermAndCondition = lazy(() =>
+  import("../_root/pages/AcceptTermAndCondition")
+);
 
 const AppRouter = createBrowserRouter([
   {
@@ -45,6 +48,10 @@ const AppRouter = createBrowserRouter([
       {
         path: RouterData.privacyPolicy,
         element: <PrivacyPolicy />,
+      },
+      {
+        path: RouterData.acceptTerms,
+        element: <AcceptTermAndCondition />,
       },
     ],
   },

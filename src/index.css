@@ -21,7 +21,6 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
   display: none;
 }
 
@@ -40,6 +39,19 @@ body {
   );
   border-radius: 2rem;
   display: none;
+}
+
+.scrollShow::-webkit-scrollbar {
+  width: 10px !important;
+}
+
+scrollShow::-webkit-scrollbar-track {
+  background: #fff;
+}
+
+.scrollShow::-webkit-scrollbar-thumb {
+  display: block !important;
+  background-color: rgba(94, 176, 255, 1);
 }
 
 .gr {

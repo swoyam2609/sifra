@@ -61,6 +61,8 @@ const Signin = () => {
         },
       });
 
+      console.log(response.data); // Log the response data
+
       if (response.data.message === "Login successful") {
         Cookies.set("token", response.data.token);
         navigate(RouterData.dashboard);
@@ -70,7 +72,7 @@ const Signin = () => {
           className: "font-primary text-sm",
         });
       }
-      console.log(response.data); // Log the response data
+      // console.log(response.data); // Log the response data
 
       setLoading(false);
       // Reset form fields
