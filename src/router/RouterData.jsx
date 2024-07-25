@@ -12,4 +12,5 @@ export const RouterData = {
   termsAndCondition: "/terms-and-condition",
   privacyPolicy: "/privacy-policy",
   acceptTerms: "/accept-terms",
+  feedback:"/feedback"
 };

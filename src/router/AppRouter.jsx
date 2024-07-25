@@ -5,6 +5,7 @@ import { RouterData } from "./RouterData";
 import Auth from "../_auth/Auth";
 import Error404 from "../_root/pages/Error404";
 import PrivateRouter from "./PrivateRouter";
+import Feedback from "../_root/pages/Feedback";
 
 const ComingSoon = lazy(() => import("../_root/pages/ComingSoon"));
 const Home = lazy(() => import("../_root/pages/Home"));
@@ -52,6 +53,10 @@ const AppRouter = createBrowserRouter([
       {
         path: RouterData.acceptTerms,
         element: <AcceptTermAndCondition />,
+      },
+      {
+        path: RouterData.feedback,
+        element: <Feedback />,
       },
     ],
   },
