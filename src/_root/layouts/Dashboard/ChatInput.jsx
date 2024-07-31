@@ -24,7 +24,7 @@ const ChatInput = () => {
   const [chatHistory, setChatHistory] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isAiTyping, setIsAiTyping] = useState(false);
-  const chatEndRef = useRef(null);
+  const chatContainerRef = useRef(null);
   const inputRef = useRef(null);
   const token = Cookies.get("token");
   const notificationSound = useRef(new Audio(messageSound));
@@ -98,7 +98,10 @@ const ChatInput = () => {
   );
 
   const scrollToBottom = useCallback(() => {
-    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    if (chatContainerRef.current) {
+      chatContainerRef.current.scrollTop =
+        chatContainerRef.current.scrollHeight;
+    }
   }, []);
 
   const getChats = useCallback(async () => {
@@ -150,6 +153,7 @@ const ChatInput = () => {
       setChatHistory((prev) => [...prev, newUserMessage]);
       setMessage("");
       setIsAiTyping(true);
+      scrollToBottom();
 
       try {
         const res = await axios.post(
@@ -174,13 +178,14 @@ const ChatInput = () => {
 
         setChatHistory((prev) => [...prev, newAiMessage]);
         notificationSound.current.play();
+        scrollToBottom();
       } catch (error) {
         console.error("Error sending message:", error);
       } finally {
         setIsAiTyping(false);
       }
     },
-    [message, isAiTyping, token]
+    [message, isAiTyping, token, scrollToBottom]
   );
 
   const handleKeyPress = useCallback(
@@ -271,7 +276,10 @@ const ChatInput = () => {
   return (
     <Wrapper>
       <div className="chat-container h-[calc(100dvh_-_80px)] flex gap-4 flex-col bg-black2 relative">
-        <div className="chat-history flex-1 overflow-hidden overflow-y-auto p-2 rounded-lg shadow-sm relative border border-white/10">
+        <div
+          ref={chatContainerRef}
+          className="chat-history flex-1 overflow-hidden overflow-y-auto p-2 rounded-lg shadow-sm relative border border-white/10"
+        >
           {isLoading ? (
             <div className="flex items-center justify-center h-full">
               <Lottie
@@ -301,7 +309,6 @@ const ChatInput = () => {
               </div>
             </div>
           )}
-          <div ref={chatEndRef}></div>
         </div>
         <form
           className="chat-input w-full rounded-md mb-4 flex items-center gap-2 shadow-sm"
